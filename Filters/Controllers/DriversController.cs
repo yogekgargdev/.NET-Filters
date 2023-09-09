@@ -17,15 +17,22 @@ namespace Filters.Controllers
        };
 
     [HttpGet]
+    [MyAsyncActionFilter]
+    [MySecondActionFilter]
     [MyActionFilterAttribute]
     public IActionResult Get()
     {
+        Console.WriteLine("Initalizing Get");
         return Ok(MyDrivers);
     }
 
     [HttpPost]
+    [MyActionFilterAttribute]
+    [MyAsyncActionFilter]
+    [MySecondActionFilter]
     public IActionResult Post(string DriverName)
     {
+        Console.WriteLine("Initalizing Post");
         MyDrivers.Add(DriverName);
         return Ok(MyDrivers);
     }
